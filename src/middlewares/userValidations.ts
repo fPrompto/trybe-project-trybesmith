@@ -1,11 +1,9 @@
 import Error from '../interfaces/Error';
-import User from '../interfaces/User';
 
 import StatusCode from '../enums/StatusCode';
 import ErrorMessage from '../enums/UserErrorMessages';
 
-function usernamee(body: User): Error | void {
-  const { username } = body;
+function usernamee(username: string): Error | void {
   const { BAD_REQUEST, ERROR } = StatusCode;
   const { Username } = ErrorMessage;
 
@@ -22,8 +20,7 @@ function usernamee(body: User): Error | void {
   }
 }
 
-function classee(body: User): Error | void {
-  const { classe } = body;
+function classee(classe: string): Error | void {
   const { BAD_REQUEST, ERROR } = StatusCode;
   const { Classe } = ErrorMessage;
 
@@ -40,8 +37,7 @@ function classee(body: User): Error | void {
   }
 }
 
-function levell(body: User): Error | void {
-  const { level } = body;
+function levell(level: number): Error | void {
   const { BAD_REQUEST, ERROR } = StatusCode;
   const { Level } = ErrorMessage;
 
@@ -58,8 +54,7 @@ function levell(body: User): Error | void {
   }
 }
 
-function passwordd(body: User): Error | void {
-  const { password } = body;
+function passwordd(password: string): Error | void {
   const { BAD_REQUEST, ERROR } = StatusCode;
   const { Password } = ErrorMessage;
 

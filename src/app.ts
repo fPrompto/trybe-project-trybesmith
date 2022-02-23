@@ -10,4 +10,9 @@ app.post(
   userController.create,
 );
 
+app.post(
+  '/login',
+  userController.login,
+);
+
 export default app;
