@@ -10,7 +10,6 @@ function generate(body: Token): string {
     secret as string,
     { algorithm: 'HS256', expiresIn: '1d' },
   );
-
   return token;
 }
 
