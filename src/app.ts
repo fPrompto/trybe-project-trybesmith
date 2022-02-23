@@ -15,4 +15,6 @@ app.post(
   userController.login,
 );
 
+app.post('/products');
+
 export default app;

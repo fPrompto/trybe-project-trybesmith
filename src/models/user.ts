@@ -19,16 +19,12 @@ async function create(body: User): Promise<User> {
 async function login(body: Login): Promise<any> {
   const { username, password } = body;
 
-  const [result] = await connection.query<RowDataPacket[][]>(
+  const [[result]] = await connection.query<RowDataPacket[][]>(
     'SELECT id, username, password FROM Trybesmith.Users WHERE username = ? AND password = ?',
     [username, password],
   );
 
-  // const [us]: Login = result;
-
-  console.log('lllll result', result[0]);
-  // console.log('lllll result', us);
-  return result[0];
+  return result;
   // https://stackoverflow.com/questions/54583950/using-typescript-how-do-i-strongly-type-mysql-query-results
 }
 
