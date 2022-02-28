@@ -21,4 +21,16 @@ async function create(req: Request, res: Response): Promise<Response> {
   return res.status(creat.status).json(creat.message);
 }
 
-export default { create };
+async function getAll(req: Request, res: Response): Promise<Response> {
+  const { authorization } = req.headers;
+  const valToken = await productValidation.tokenn(authorization as string);
+
+  if (!authorization) return res.status(401).json({ error: 'Token not found' });
+  if (valToken) return res.status(valToken.status).json(valToken.message);
+
+  const get = await productService.getAll();
+
+  return res.status(get.status).json(get.message);
+}
+
+export default { create, getAll };

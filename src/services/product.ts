@@ -9,14 +9,18 @@ async function create(body: Product): Promise<ServiceResponse> {
 
   return {
     status: 201,
-    message: {
-      item: {
-        id: c.insertId,
-        name,
-        amount,
-      },
-    },
+    message: { item: { id: c.insertId, name, amount } },
   };
 }
 
-export default { create };
+async function getAll(): Promise<ServiceResponse> {
+  const c = await productModel.getAll();
+  console.log('product service get all', c);
+
+  return {
+    status: 200,
+    message: c,
+  };
+}
+
+export default { create, getAll };

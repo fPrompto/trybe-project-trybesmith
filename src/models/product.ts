@@ -15,4 +15,13 @@ async function create(body: Product): Promise<any> {
   return result;
 }
 
-export default { create };
+async function getAll(): Promise<any> {
+  const [result] = await connection.query<ResultSetHeader>(
+    'SELECT * FROM Trybesmith.Products',
+  );
+  console.log('result get all products', result);
+
+  return result;
+}
+
+export default { create, getAll };

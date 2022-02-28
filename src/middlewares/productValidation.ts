@@ -47,7 +47,6 @@ function amountt(amount: string): Error | void {
 }
 
 function tokenn(token: string): Error | void {
-  const { ERROR } = StatusCode;
   const test = jwtoken.verify(token);
   console.log('auth1', token);
 
