@@ -339,7 +339,7 @@ describe("3 - Crie um endpoint para o cadastro de produtos", () => {
     expect(result.body.error).toEqual("Amount must be a string");
   });
 
-  it.skip('Será validado que o campo "amount" é uma string com mais de 2 caracteres', async () => {
+  it('Será validado que o campo "amount" é uma string com mais de 2 caracteres', async () => {
     const result = await request(app).post("/products").send({
       name: "name",
       amount: "1",
@@ -350,7 +350,7 @@ describe("3 - Crie um endpoint para o cadastro de produtos", () => {
   });
 
 
-  it.skip('Será validado que é possível cadastrar um produto com sucesso', async () => {
+  it('Será validado que é possível cadastrar um produto com sucesso', async () => {
     const result = await request(app).post("/products").send({
       name: "name",
       amount: "amount",

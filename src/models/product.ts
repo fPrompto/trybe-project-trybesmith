@@ -11,7 +11,7 @@ async function create(body: Product): Promise<any> {
     [name, amount],
   );
 
-  console.log('aaaaaaaaaa', result);
+  console.log('aaaaaaaaaa', result.insertId);
   return result;
 }
 

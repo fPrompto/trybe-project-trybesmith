@@ -1,16 +1,22 @@
 import productModel from '../models/product';
 
-import Error from '../interfaces/Error';
 import Product from '../interfaces/Product';
-import StatusCode from '../enums/StatusCode';
+import ServiceResponse from '../interfaces/ServiceResponse';
 
-async function create(body: Product, authorization: string): Promise<any> {
+async function create(body: Product): Promise<ServiceResponse> {
   const { name, amount } = body;
+  const c = await productModel.create(body);
 
-  if (!authorization) {
-    return {
-      status: StatusCode.NOT_FOUND,
-      message: { error: 'Token not found' }
-    };
-  }
+  return {
+    status: 201,
+    message: {
+      item: {
+        id: c.insertId,
+        name,
+        amount,
+      },
+    },
+  };
 }
+
+export default { create };

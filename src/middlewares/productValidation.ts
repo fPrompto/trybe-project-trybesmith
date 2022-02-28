@@ -1,7 +1,7 @@
 import Error from '../interfaces/Error';
 
 import StatusCode from '../enums/StatusCode';
-import ErrorMessage from '../enums/UserErrorMessages';
+import jwtoken from '../services/token';
 
 function namee(name: string): Error | void {
   const { BAD_REQUEST, ERROR } = StatusCode;
@@ -17,7 +17,7 @@ function namee(name: string): Error | void {
   if (name.length <= 2) {
     return {
       status: ERROR,
-      message: { error: 'Name must be longer than 2 characters' }
+      message: { error: 'Name must be longer than 2 characters' },
     };
   }
 }
@@ -46,6 +46,24 @@ function amountt(amount: string): Error | void {
   }
 }
 
-function tokenn(token: string):
+function tokenn(token: string): Error | void {
+  const { ERROR } = StatusCode;
+  const test = jwtoken.verify(token);
+  console.log('auth1', token);
 
-export default { namee };
+  // if (!token) {
+  //   return {
+  //     status: BAD_REQUEST,
+  //     message: { error: 'Token not found' },
+  //   };
+  // }
+
+  if (test === false) {
+    return {
+      status: 401,
+      message: { error: 'Invalid token' },
+    };
+  }
+}
+
+export default { namee, amountt, tokenn };

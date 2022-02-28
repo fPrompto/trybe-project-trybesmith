@@ -1,6 +1,7 @@
 import express from 'express';
 
 import userController from './controllers/user';
+import productController from './controllers/product';
 
 const app = express();
 app.use(express.json());
@@ -15,6 +16,6 @@ app.post(
   userController.login,
 );
 
-app.post('/products');
+app.post('/products', productController.create);
 
 export default app;

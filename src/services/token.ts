@@ -1,9 +1,10 @@
 import jwt from 'jsonwebtoken';
 import Token from '../interfaces/Token';
 
+const secret = 'triss';
+
 function generate(body: Token): string {
   const { id, username } = body;
-  const secret = 'triss';
 
   const token = jwt.sign(
     { id, username },
@@ -13,4 +14,16 @@ function generate(body: Token): string {
   return token;
 }
 
-export default { generate };
+function verify(data: string): boolean {
+  try {
+    jwt.verify(
+      data,
+      secret as string,
+    );
+    return true;
+  } catch (_e) {
+    return false;
+  }
+}
+
+export default { generate, verify };
